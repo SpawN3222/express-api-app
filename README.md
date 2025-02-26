@@ -21,7 +21,7 @@ The frontend (**Vite + React**) is currently under development.
 ## 📦 Installation
 
 ```sh
-git clone https://github.com/your-repo-name.git
+git clone https://github.com/spawn3222/express-api-app.git
 cd your-repo-name
 npm install
 ```
