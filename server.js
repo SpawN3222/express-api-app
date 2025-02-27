@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient, Status } = require('@prisma/client');
 
 const app = express();
 const port = 3000;
@@ -125,7 +125,7 @@ app.patch('/tickets/:id/work', async (req, res) => {
     try {
         const updatedTicket = await prisma.ticket.update({
             where: { id: ticketId },
-            data: { status: 'IN_PROGRESS' },
+            data: { status: Status.IN_PROGRESS },
         });
         res.json(updatedTicket);
         console.log(`[ID: ${id}] — Обращение взято в работу и переведено в статус "IN_PROGRESS"`);
@@ -149,7 +149,7 @@ app.patch('/tickets/:id/complete', async (req, res) => {
     try {
         const updatedTicket = await prisma.ticket.update({
             where: { id: ticketId },
-            data: { status: 'COMPLETED' },
+            data: { status: Status.COMPLETED },
         });
         res.json(updatedTicket);
         console.log(`[ID: ${id}] — Обращение завершено и переведено в статус "COMPLETED"`);
@@ -172,7 +172,7 @@ app.patch('/tickets/:id/cancel', async (req, res) => {
         const updatedTicket = await prisma.ticket.update({
             where: { id: parseInt(id) },
             data: {
-                status: 'CANCELED',
+                status: Status.CANCELED,
                 cancellationReason,
             },
         });
@@ -230,8 +230,10 @@ app.get('/tickets', async (req, res) => {
 // * ANCHOR 6. PATCH — Отменяем все обращения со статусом "IN_PROGRESS" (CANCELLED)
 app.patch('/tickets/cancel-all', async (req, res) => {
     try {
+
         const updatedTickets = await prisma.ticket.updateMany({
-            data: { status: 'CANCELED' },
+            where: { status: Status.IN_PROGRESS },
+            data: { status: Status.CANCELED },
         });
         res.json(updatedTickets);
         console.log(`Обращения со статусом "IN_PROGRESS" отменены и переведены в статус "CANCELED"`);
