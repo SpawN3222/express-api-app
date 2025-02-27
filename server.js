@@ -139,6 +139,7 @@ app.patch('/tickets/:id/work', async (req, res) => {
 // * ANCHOR 3. PATCH — Завершаем обработку обращения (COMPLETED)
 app.patch('/tickets/:id/complete', async (req, res) => {
     const { id } = req.params;
+    const { resolution } = req.body;
 
     const ticketId = parseInt(id, 10);
 
@@ -146,10 +147,16 @@ app.patch('/tickets/:id/complete', async (req, res) => {
         return res.status(400).json({ error: "Некорректный ID обращения" });
     }
 
+    if (!resolution) {
+        return res.status(400).json({ error: "Требуется описание завершения" });
+    }
+
     try {
         const updatedTicket = await prisma.ticket.update({
             where: { id: ticketId },
-            data: { status: Status.COMPLETED },
+            data: { status: Status.COMPLETED,
+                    resolution
+            },
         });
         res.json(updatedTicket);
         console.log(`[ID: ${id}] — Обращение завершено и переведено в статус "COMPLETED"`);
