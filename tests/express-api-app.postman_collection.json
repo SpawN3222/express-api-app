@@ -296,7 +296,7 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/tickets/31461/work",
+					"raw": "http://localhost:3000/tickets/1/work",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -304,7 +304,7 @@
 					"port": "3000",
 					"path": [
 						"tickets",
-						"31461",
+						"1",
 						"work"
 					]
 				}
@@ -385,7 +385,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tickets/31462/complete",
+					"raw": "http://localhost:3000/tickets/1/complete",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -393,7 +393,7 @@
 					"port": "3000",
 					"path": [
 						"tickets",
-						"31462",
+						"1",
 						"complete"
 					]
 				}
@@ -476,7 +476,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/tickets/11/cancel",
+					"raw": "http://localhost:3000/tickets/2/cancel",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -484,7 +484,7 @@
 					"port": "3000",
 					"path": [
 						"tickets",
-						"11",
+						"2",
 						"cancel"
 					]
 				}
@@ -579,7 +579,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/tickets?startDate=2025-02-01&endDate=2025-02-28&limit=100",
+					"raw": "http://localhost:3000/tickets?startDate=2025-02-01&endDate=2025-05-28&limit=100",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -595,7 +595,7 @@
 						},
 						{
 							"key": "endDate",
-							"value": "2025-02-28"
+							"value": "2025-05-28"
 						},
 						{
 							"key": "limit",
