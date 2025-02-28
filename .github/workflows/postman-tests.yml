@@ -22,13 +22,15 @@ jobs:
           npm install
 
       - name: Start API server
-        run: npm start &
+        run: |
+          cd server
+          npm start &
 
       - name: Check API health
         run: |
           echo "Waiting for API..."
           sleep 5
-          curl --retry 10 --retry-connrefused --retry-delay 5 curl -v http://localhost:3000/tickets || exit 1
+          curl --retry 5 --retry-connrefused --retry-delay 5 curl -v http://localhost:3000/tickets || exit 1
 
       - name: Install Newman
         run: npm install -g newman
