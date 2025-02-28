@@ -21,6 +21,12 @@ jobs:
           cd server
           npm install
 
+      - name: Set up Prisma database
+        run: |
+          cd server
+          npx prisma migrate dev --name init
+          npx prisma db seed
+
       - name: Start API server
         run: |
           cd server
