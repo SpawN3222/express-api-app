@@ -527,7 +527,7 @@
 							"    ",
 							"    pm.expect(responseData).to.be.an('object');",
 							"    pm.expect(responseData.tickets).to.be.an('array');",
-							"    pm.expect(responseData.tickets).to.have.lengthOf(1);",
+							"    pm.expect(responseData.tickets).to.have.lengthOf(20);",
 							"});",
 							"",
 							"",
